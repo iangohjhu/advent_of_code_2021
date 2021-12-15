@@ -34,7 +34,6 @@ sub readInput()
 	close(INFO);
 
 	$max_row = $row;
-	close(INFO);
 
 	print "Read rows: $max_row\n";
 
