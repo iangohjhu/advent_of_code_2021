@@ -28,7 +28,7 @@ sub readInput()
 		# trim white space at end
 		$line =~ s/\s+$//;
 
-     	processLine($line);
+		processLine($line);
 
 		# print "horizontal: $horizontal, depth: $depth\n";
 	}
