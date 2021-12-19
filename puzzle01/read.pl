@@ -1,13 +1,15 @@
+use strict;
+
 # day01 part 1  count the number of times a depth measurement increases from the previous measurement.
 
-#$file='sample_input.txt';
+#my $file='sample_input.txt';
 # There are 7 measurements that are larger than previous measurement.
 
-$file='actual_input.txt';
+my $file='actual_input.txt';
 # There are 1711 measurements that are larger than previous measurement.
 
 # holds the number of times a depth measurement increases from the previous measurement
-$count = 0; 
+my $count = 0; 
 
 readInput($file);
 displayOutput();
@@ -20,6 +22,7 @@ sub readInput()
 	open(INFO, $file) or die("Could not open file.");
 
 	my $row = 0;
+	my $max_row = 0;
 	my $previous_measurement = 0;
 	
 	foreach my $measurement (<INFO>)  {   
@@ -41,9 +44,7 @@ sub readInput()
 
 sub processLine()
 {
-	my $measurement          = $_[0];
-	my $previous_measurement = $_[1];
-	
+	my ($measurement, $previous_measurement) = @_;
 
 	if ($previous_measurement > 0)
 	{

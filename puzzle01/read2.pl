@@ -1,14 +1,15 @@
+use strict;
 # day01 part 2 count the number of times the sum of measurements in this sliding window increases from the previous sum.
 
-#$file='sample_input.txt';
+#my $file='sample_input.txt';
 # Number of increases: 5
 
-$file='actual_input.txt';
+my $file='actual_input.txt';
 # Number of increases: 1743
 
-$max_row = 0;
-@array;
-$increases = 0;
+my $max_row = 0;
+my @array;
+my $increases = 0;
 
 readInput($file);
 processTriples();
@@ -20,20 +21,13 @@ exit;
  {
 	my $file = $_[0]; 
  
-	open(INFO, $file) or die("Could not open  file.");
-
-	my $row = 0;
- 
-	foreach $line (<INFO>)  {   
-		#    print "$line\n";
-    	@array[$row] = $line; 
-		
-		$row++;
-	}
-	
-	$max_row = $row;
-
+ 	# read input into an array
+	open(INFO, $file) or die("Could not open file.");
+	@array = map { /([0-9]+)/ } (<INFO>);
 	close(INFO);
+		
+	$max_row = scalar @array;
+
 	print "Read rows: $max_row\n";
 }
 
@@ -46,12 +40,9 @@ sub processTriples()
 		my $sum1 = $array[$i] + $array[$i+1] + $array[$i+2];
 		my $sum2 = $array[$i+1] + $array[$i+2] + $array[$i+3];
 	
-		print "$sum1 $sum2 :\n";
-	
 		if ($sum1 < $sum2)
 		{
 			$increases++;
-			print " increased\n";
 		}
 	}
 
